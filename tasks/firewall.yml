@@ -1,0 +1,9 @@
+---
+- name: Open Libp2p ports in iptables
+  include_role: name=open-ports
+  vars:
+    open_ports_default_comment: '{{ nimbus_fluffy_service_name }}'
+    open_ports_default_chain: 'SERVICES'
+    open_ports_list:
+      - { port: '{{ nimbus_fluffy_listening_port }}', protocol: 'udp' }
+      - { port: '{{ nimbus_fluffy_metrics_port }}', chain: 'VPN', ipset: 'metrics.hq' }

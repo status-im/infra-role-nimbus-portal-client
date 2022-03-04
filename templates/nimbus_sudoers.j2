@@ -1,0 +1,4 @@
+# Allow non-root users logging in as nimbus user
+
+%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /bin/su – {{ nimbus_fluffy_user }}
+%{{ nimbus_fluffy_group }} ALL=({{ nimbus_fluffy_user }}) NOPASSWD: ALL

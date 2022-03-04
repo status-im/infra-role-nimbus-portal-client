@@ -1,0 +1,37 @@
+[Unit]
+Description=Nimbus Eth1 Fluffy node ({{ nimbus_fluffy_repo_branch }})
+Documentation=https://github.com/status-im/nimbus-eth1
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User={{ nimbus_fluffy_user }}
+Group={{ nimbus_fluffy_group }}
+WorkingDirectory={{ nimbus_fluffy_service_path }}
+SyslogIdentifier={{ nimbus_fluffy_service_name }}
+SyslogFacility=local6
+SyslogLevel=debug
+Restart=on-failure
+ExecStart={{ nimbus_fluffy_binary_path }} \
+  --log-level={{ nimbus_fluffy_log_level }} \
+  --data-dir={{ nimbus_fluffy_data_path }} \
+  --netkey-file={{ nimbus_fluffy_netkey_path }} \
+{% if nimbus_fluffy_bootstrap_nodes|length > 0 %}
+  --bootstrap-file={{ nimbus_fluffy_bootstrap_path }} \
+{% endif %}
+  --udp-port={{ nimbus_fluffy_listening_port }} \
+  --listen-address={{ nimbus_fluffy_listening_addr }} \
+  --nat=extip:{{ nimbus_fluffy_public_address }} \
+  --metrics={{ nimbus_fluffy_metrics_enabled }} \
+  --metrics-port={{ nimbus_fluffy_metrics_port }} \
+  --metrics-address={{ nimbus_fluffy_metrics_address }} \
+  --rpc={{ nimbus_fluffy_rpc_enabled | to_json }} \
+  --rpc-port={{ nimbus_fluffy_rpc_port }} \
+  --rpc-address={{ nimbus_fluffy_rpc_address }} \
+  --table-ip-limit={{ nimbus_fluffy_table_ip_limit }} \
+  --bucket-ip-limit={{ nimbus_fluffy_bucket_ip_limit }} \
+  --bits-per-hop={{ nimbus_fluffy_bits_per_hop }} \
+  --radius={{ nimbus_fluffy_radius }}
+
+[Install]
+WantedBy=multi-user.target
