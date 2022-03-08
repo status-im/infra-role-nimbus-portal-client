@@ -34,5 +34,5 @@
     systemd_timer_enabled: '{{ nimbus_fluffy_build_timer_enabled }}'
     systemd_timer_frequency: '{{ nimbus_fluffy_build_frequency }}'
     systemd_timer_timeout_sec: '{{ nimbus_fluffy_build_timer_timeout }}'
-    systemd_timer_work_dir: '{{ nimbus_fluffy_service_path }}'
+    systemd_timer_work_dir: '{{ nimbus_fluffy_repo_path }}'
     systemd_timer_script_path: '{{ nimbus_fluffy_build_script_path }}'

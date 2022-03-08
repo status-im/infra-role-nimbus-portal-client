@@ -12,6 +12,7 @@ nimbus_fluffy_netkey_path: '{{ nimbus_fluffy_data_path }}/netkey'
 
 # Build
 nimbus_fluffy_build_service_name: 'build-{{ nimbus_fluffy_service_name }}'
+nimbus_fluffy_build_restart_service: '{{ nimbus_fluffy_service_name }}.service'
 nimbus_fluffy_build_timer_enabled: true
 nimbus_fluffy_build_timer_timeout: 3600
 nimbus_fluffy_build_frequency: 'daily'
