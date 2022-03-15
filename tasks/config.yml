@@ -1,6 +1,14 @@
 ---
 - name: Create service directory
   file:
+    path: '{{ nimbus_fluffy_service_path }}'
+    state: directory
+    owner: '{{ nimbus_fluffy_user }}'
+    group: '{{ nimbus_fluffy_group }}'
+    mode: 0775
+
+- name: Create data directory
+  file:
     path: '{{ nimbus_fluffy_data_path }}'
     state: directory
     owner: '{{ nimbus_fluffy_user }}'
@@ -31,7 +39,7 @@
     dest: '{{ nimbus_fluffy_rpc_script_path }}'
     owner: '{{ nimbus_fluffy_user }}'
     group: '{{ nimbus_fluffy_group }}'
-    mode: 0750
+    mode: 0755
 
 - name: Create Ansible toggle script
   copy:
