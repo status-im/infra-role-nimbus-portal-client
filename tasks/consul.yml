@@ -1,4 +1,20 @@
 ---
+- name: Query node ENR address
+  uri:
+    url: 'http://localhost:{{ nimbus_fluffy_rpc_port }}/'
+    method: 'POST'
+    body_format: 'json'
+    body:
+      id: 1
+      jsonrpc: '2.0'
+      method: 'discv5_nodeInfo'
+      params: []
+  register: node_info_raw
+
+- name: Extract node ENR address
+  set_fact:
+    nimbus_fluffy_node_enr: '{{ node_info_raw.json.result.nodeENR }}'
+
 - name: 'Create Consul service definition'
   include_role: name=consul-service
   vars:
@@ -9,6 +25,8 @@
         port: '{{ nimbus_fluffy_listening_port }}'
         address: '{{ nimbus_fluffy_public_address }}'
         tags: ['{{ env }}.{{ stage }}', 'eth1', 'nimbus']
+        meta:
+          node_enr: '{{ nimbus_fluffy_node_enr }}'
         checks:
           - name: '{{ nimbus_fluffy_consul_service_name }}-health'
             type: 'script'
