@@ -7,7 +7,7 @@ nimbus_fluffy_logs_link: '{{ nimbus_fluffy_service_path }}/logs'
 nimbus_fluffy_rpc_script_path: '{{ nimbus_fluffy_service_path }}/rpc.sh'
 nimbus_fluffy_build_script_path: '{{ nimbus_fluffy_service_path }}/build.sh'
 nimbus_fluffy_binary_path: '{{ nimbus_fluffy_repo_path }}/build/fluffy'
-nimbus_fluffy_bootstrap_path: '{{ nimbus_fluffy_data_path }}/bootstrap'
+nimbus_fluffy_bootstrap_path: '{{ nimbus_fluffy_data_path }}/bootstrap.enr'
 nimbus_fluffy_netkey_path: '{{ nimbus_fluffy_data_path }}/netkey'
 
 # Build
