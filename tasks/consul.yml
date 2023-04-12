@@ -13,7 +13,7 @@
 
 - name: Extract node ENR address
   set_fact:
-    nimbus_fluffy_node_enr: '{{ node_info_raw.json.result.nodeENR }}'
+    nimbus_fluffy_node_enr: '{{ node_info_raw.json.result.enr }}'
 
 - name: 'Create Consul service definition'
   include_role: name=consul-service
