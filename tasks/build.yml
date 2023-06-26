@@ -1,4 +1,11 @@
 ---
+- name: Create folder
+  file:
+    path: '{{ nimbus_fluffy_repo_path }}'
+    owner: '{{ nimbus_fluffy_user }}'
+    group: '{{ nimbus_fluffy_group }}'
+    state: 'directory'
+
 - name: Clone repo branch
   git:
     repo: '{{ nimbus_fluffy_repo_url }}'
