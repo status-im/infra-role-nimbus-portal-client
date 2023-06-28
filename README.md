@@ -34,8 +34,8 @@ The crucial settings are:
 ```yaml
 # branch which should be built
 nimbus_fluffy_repo_branch: 'master'
-# ethereum network to connect to
-nimbus_fluffy_network: 'mainnet'
+# Portal network to connect to
+nimbus_fluffy_network: 'testnet0'
 # optional setting for debug mode
 nimbus_fluffy_log_level: 'DEBUG'
 ```
