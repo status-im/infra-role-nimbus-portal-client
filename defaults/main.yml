@@ -65,6 +65,7 @@ nimbus_fluffy_consul_metrics_service_name: '{{ nimbus_fluffy_consul_service_name
 nimbus_fluffy_consul_url: 'http://localhost:8500/v1/catalog'
 nimbus_fluffy_consul_check_interval: '60s'
 nimbus_fluffy_consul_check_timeout: '5s'
+nimbus_fluffy_consul_check_disabled: false
 nimbus_fluffy_consul_success_before_passing: 0
 nimbus_fluffy_consul_failures_before_warning: 1
 nimbus_fluffy_consul_failures_before_critical: 2
