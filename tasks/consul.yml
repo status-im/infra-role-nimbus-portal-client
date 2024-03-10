@@ -1,22 +1,6 @@
 ---
-- name: Query node ENR address
-  uri:
-    url: 'http://localhost:{{ nimbus_fluffy_rpc_port }}/'
-    method: 'POST'
-    body_format: 'json'
-    body:
-      id: 1
-      jsonrpc: '2.0'
-      method: 'discv5_nodeInfo'
-      params: []
-  register: node_info_raw
-
-- name: Extract node ENR address
-  set_fact:
-    nimbus_fluffy_node_enr: '{{ node_info_raw.json.result.enr }}'
-
 - name: 'Create Consul service definition'
-  include_role: name=consul-service
+  include_role: name=infra-role-consul-service
   vars:
     consul_config_name: '{{ nimbus_fluffy_consul_service_file_name }}'
     consul_services:
@@ -25,8 +9,6 @@
         port: '{{ nimbus_fluffy_listening_port }}'
         address: '{{ nimbus_fluffy_public_address }}'
         tags: ['{{ env }}.{{ stage }}', 'eth1', 'nimbus']
-        meta:
-          node_enr: '{{ nimbus_fluffy_node_enr }}'
         checks:
           - id:       '{{ nimbus_fluffy_consul_service_name }}-health'
             name:     '{{ nimbus_fluffy_consul_service_name }}-health'
@@ -44,8 +26,6 @@
         port: '{{ nimbus_fluffy_metrics_port }}'
         address: '{{ ansible_local.wireguard.vpn_ip }}'
         tags: ['{{ env }}.{{ stage }}', 'eth1', 'nimbus', 'metrics']
-        meta:
-          container: '{{ nimbus_fluffy_service_name }}'
         checks:
           - id:       '{{ nimbus_fluffy_consul_metrics_service_name }}-health'
             name:     '{{ nimbus_fluffy_consul_metrics_service_name }}-health'

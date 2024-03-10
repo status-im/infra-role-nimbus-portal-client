@@ -29,7 +29,7 @@
   register: nimbus_fluffy_bin
 
 - name: Create timer for build script
-  include_role: name=systemd-timer
+  include_role: name=infra-role-systemd-timer
   vars:
     systemd_timer_name: '{{ nimbus_fluffy_build_service_name }}'
     systemd_timer_user: '{{ nimbus_fluffy_user }}'
