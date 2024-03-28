@@ -46,7 +46,8 @@ nimbus_fluffy_listening_port: 9009
 nimbus_fluffy_table_ip_limit: 1024
 nimbus_fluffy_bucket_ip_limit: 24
 nimbus_fluffy_bits_per_hop: 1
-nimbus_fluffy_radius: 'static:252'
+nimbus_fluffy_radius: 'dynamic'
+nimbus_fluffy_storage_capacity: 35000 # in megabytes
 
 # Metrics
 nimbus_fluffy_metrics_enabled: true
