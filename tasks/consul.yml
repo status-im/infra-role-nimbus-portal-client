@@ -4,7 +4,7 @@
   vars:
     consul_config_name: '{{ nimbus_fluffy_consul_service_file_name }}'
     consul_services:
-      - id: '{{ nimbus_fluffy_service_name }}'
+      - id:   '{{ nimbus_fluffy_service_name }}'
         name: '{{ nimbus_fluffy_consul_service_name }}'
         port: '{{ nimbus_fluffy_listening_port }}'
         address: '{{ nimbus_fluffy_public_address }}'
@@ -21,11 +21,13 @@
             failures_before_warning:  '{{ nimbus_fluffy_consul_failures_before_warning }}'
             failures_before_critical: '{{ nimbus_fluffy_consul_failures_before_critical }}'
 
-      - id: '{{ nimbus_fluffy_service_name }}-metrics'
+      - id:   '{{ nimbus_fluffy_service_name }}-metrics'
         name: '{{ nimbus_fluffy_consul_metrics_service_name }}'
         port: '{{ nimbus_fluffy_metrics_port }}'
         address: '{{ ansible_local.wireguard.vpn_ip }}'
         tags: ['{{ env }}.{{ stage }}', 'eth1', 'nimbus', 'metrics']
+        meta:
+          container: '{{ nimbus_fluffy_service_name }}'
         checks:
           - id:       '{{ nimbus_fluffy_consul_metrics_service_name }}-health'
             name:     '{{ nimbus_fluffy_consul_metrics_service_name }}-health'
