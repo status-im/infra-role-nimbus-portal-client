@@ -35,7 +35,7 @@ The crucial settings are:
 # branch which should be built
 nimbus_fluffy_repo_branch: 'master'
 # Portal network to connect to
-nimbus_fluffy_network: 'testnet0'
+nimbus_fluffy_network: 'mainnet'
 # optional setting for debug mode
 nimbus_fluffy_log_level: 'DEBUG'
 ```

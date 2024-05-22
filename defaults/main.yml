@@ -31,7 +31,7 @@ nimbus_fluffy_user: 'nimbus'
 nimbus_fluffy_group: 'staff'
 
 # General
-nimbus_fluffy_network: 'testnet0' # or 'none'
+nimbus_fluffy_network: 'mainnet' # or 'none'
 nimbus_fluffy_log_level: 'INFO' # TRACE DEBUG INFO NOTICE WARN ERROR FATAL NONE
 nimbus_fluffy_bootstrap_nodes: []
 #nimbus_fluffy_netkey: ~
