@@ -67,8 +67,8 @@ A timer will be installed to build the image:
 ```
 To rebuild the image:
 ```sh
- > sudo systemctl start build-nimbus-fluffy-master
- > sudo systemctl status build-nimbus-fluffy-master
+ > sudo systemctl start build-nimbus-fluffy-mainnet-master.service
+ > sudo systemctl status build-nimbus-fluffy-mainnet-master.service
  ● nimbus-fluffy-master-build.service - Build nimbus-fluffy-master
      Loaded: loaded (/etc/systemd/system/nimbus-fluffy-master-build.service; enabled; vendor preset: enabled)
      Active: inactive (dead) since Wed 2021-09-29 12:00:12 UTC; 2h 15min ago
@@ -84,7 +84,7 @@ Sep 29 12:00:12 systemd[1]: Finished Build nimbus-fluffy-master.
 ```
 To check full build logs use:
 ```sh
-journalctl -u build-nimbus-fluffy-master.service
+journalctl -u build-nimbus-fluffy-mainnet-master.service
 ```
 
 # Requirements
