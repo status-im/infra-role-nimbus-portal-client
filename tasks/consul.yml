@@ -29,7 +29,7 @@
         meta:
           container: '{{ nimbus_fluffy_service_name }}'
         checks:
-          - id:       '{{ nimbus_fluffy_consul_metrics_service_name }}-health'
+          - id:       '{{ nimbus_fluffy_service_name }}-metrics-health'
             name:     '{{ nimbus_fluffy_consul_metrics_service_name }}-health'
             interval: '{{ nimbus_fluffy_consul_check_interval }}'
             timeout:  '{{ nimbus_fluffy_consul_check_timeout }}'
