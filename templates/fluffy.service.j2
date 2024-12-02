@@ -29,9 +29,6 @@ ExecStart={{ nimbus_fluffy_binary_path }} \
   --rpc={{ nimbus_fluffy_rpc_enabled | to_json }} \
   --rpc-port={{ nimbus_fluffy_rpc_port }} \
   --rpc-address={{ nimbus_fluffy_rpc_address }} \
-  --table-ip-limit={{ nimbus_fluffy_table_ip_limit }} \
-  --bucket-ip-limit={{ nimbus_fluffy_bucket_ip_limit }} \
-  --bits-per-hop={{ nimbus_fluffy_bits_per_hop }} \
   --radius={{ nimbus_fluffy_radius }} \
   --storage-capacity={{ nimbus_fluffy_storage_capacity }}
 
