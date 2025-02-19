@@ -29,6 +29,7 @@ ExecStart={{ nimbus_fluffy_binary_path }} \
   --rpc={{ nimbus_fluffy_rpc_enabled | to_json }} \
   --rpc-port={{ nimbus_fluffy_rpc_port }} \
   --rpc-address={{ nimbus_fluffy_rpc_address }} \
+  --rpc-api={{ nimbus_fluffy_rpc_api_options }} \
   --radius={{ nimbus_fluffy_radius }} \
   --storage-capacity={{ nimbus_fluffy_storage_capacity }}
 

@@ -55,6 +55,7 @@ nimbus_fluffy_metrics_port: 9200
 nimbus_fluffy_rpc_enabled: true
 nimbus_fluffy_rpc_address: '127.0.0.1'
 nimbus_fluffy_rpc_port: 9900
+nimbus_fluffy_rpc_api_options: 'eth,portal,discovery'
 
 # Consul service definition settings
 nimbus_fluffy_consul_service_name: 'nimbus-fluffy'
