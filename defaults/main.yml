@@ -35,6 +35,8 @@ nimbus_fluffy_network: 'mainnet' # or 'none'
 nimbus_fluffy_log_level: 'INFO' # TRACE DEBUG INFO NOTICE WARN ERROR FATAL NONE
 nimbus_fluffy_bootstrap_nodes: []
 #nimbus_fluffy_netkey: ~
+nimbus_fluffy_mainnet_beacon_api_endpoint: 'http://testing.mainnet.beacon-api.nimbus.team/eth/v1/beacon/headers/finalized'
+#nimbus_fluffy_trusted_block_root: ~
 
 # Connections
 nimbus_fluffy_public_address: '{{ ansible_host }}'

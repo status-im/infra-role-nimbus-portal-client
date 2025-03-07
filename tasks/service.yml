@@ -6,6 +6,17 @@
     state: 'link'
     force: true
 
+- name: Get finalized header data from Nimbus mainnet beacon API
+  uri:
+    url: "{{ nimbus_fluffy_mainnet_beacon_api_endpoint }}"
+    method: GET
+    return_content: yes
+  register: response
+
+- name: Extract trusted block root and set as a variable
+  set_fact:
+    nimbus_fluffy_trusted_block_root: "{{ response.json | json_query('data.root') }}"
+
 - name: Create systemd Unit file
   template:
     src: 'fluffy.service.j2'

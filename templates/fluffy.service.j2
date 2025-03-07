@@ -31,7 +31,8 @@ ExecStart={{ nimbus_fluffy_binary_path }} \
   --rpc-address={{ nimbus_fluffy_rpc_address }} \
   --rpc-api={{ nimbus_fluffy_rpc_api_options }} \
   --radius={{ nimbus_fluffy_radius }} \
-  --storage-capacity={{ nimbus_fluffy_storage_capacity }}
+  --storage-capacity={{ nimbus_fluffy_storage_capacity }} \
+  --trusted-block-root={{ nimbus_fluffy_trusted_block_root }}
 
 [Install]
 WantedBy=multi-user.target
