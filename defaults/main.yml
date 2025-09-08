@@ -57,7 +57,7 @@ nimbus_portal_client_metrics_port: 9200
 nimbus_portal_client_rpc_enabled: true
 nimbus_portal_client_rpc_address: '127.0.0.1'
 nimbus_portal_client_rpc_port: 9900
-nimbus_portal_client_rpc_api_options: 'eth,portal,discovery'
+nimbus_portal_client_rpc_api_options: 'portal,discovery'
 
 # Consul service definition settings
 nimbus_portal_client_consul_service_name: 'nimbus-portal-client'
