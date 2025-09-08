@@ -1,6 +1,6 @@
 ---
 - include_tasks: checks.yml
-- when: not nimbus_fluffy_ansible_disabled
+- when: not nimbus_portal_client_ansible_disabled
   block:
     - include_tasks: install.yml
     - include_tasks: user.yml

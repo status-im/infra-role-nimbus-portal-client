@@ -1,72 +1,72 @@
 ---
-nimbus_fluffy_service_name: 'nimbus-fluffy-{{ nimbus_fluffy_repo_branch }}'
-nimbus_fluffy_service_path: '/data/{{ nimbus_fluffy_service_name }}'
-nimbus_fluffy_data_path: '{{ nimbus_fluffy_service_path }}/data'
-nimbus_fluffy_repo_path: '{{ nimbus_fluffy_service_path }}/repo'
-nimbus_fluffy_logs_link: '{{ nimbus_fluffy_service_path }}/logs'
-nimbus_fluffy_rpc_script_path: '{{ nimbus_fluffy_service_path }}/rpc.sh'
-nimbus_fluffy_build_script_path: '{{ nimbus_fluffy_service_path }}/build.sh'
-nimbus_fluffy_binary_path: '{{ nimbus_fluffy_repo_path }}/build/fluffy'
-nimbus_fluffy_bootstrap_path: '{{ nimbus_fluffy_data_path }}/bootstrap.enr'
-nimbus_fluffy_netkey_path: '{{ nimbus_fluffy_data_path }}/netkey'
+nimbus_portal_client_service_name: 'nimbus-portal-client-{{ nimbus_portal_client_repo_branch }}'
+nimbus_portal_client_service_path: '/data/{{ nimbus_portal_client_service_name }}'
+nimbus_portal_client_data_path: '{{ nimbus_portal_client_service_path }}/data'
+nimbus_portal_client_repo_path: '{{ nimbus_portal_client_service_path }}/repo'
+nimbus_portal_client_logs_link: '{{ nimbus_portal_client_service_path }}/logs'
+nimbus_portal_client_rpc_script_path: '{{ nimbus_portal_client_service_path }}/rpc.sh'
+nimbus_portal_client_build_script_path: '{{ nimbus_portal_client_service_path }}/build.sh'
+nimbus_portal_client_binary_path: '{{ nimbus_portal_client_repo_path }}/build/nimbus_portal_client'
+nimbus_portal_client_bootstrap_path: '{{ nimbus_portal_client_data_path }}/bootstrap.enr'
+nimbus_portal_client_netkey_path: '{{ nimbus_portal_client_data_path }}/netkey'
 
 # Build
-nimbus_fluffy_build_service_name: 'build-{{ nimbus_fluffy_service_name }}'
-nimbus_fluffy_build_restart_service: '{{ nimbus_fluffy_service_name }}.service'
-nimbus_fluffy_build_timer_enabled: true
-nimbus_fluffy_build_timer_timeout: 3600
-nimbus_fluffy_build_frequency: 'daily'
-nimbus_fluffy_build_days_kept: 3
-nimbus_fluffy_build_jobs: '{{ ansible_processor_vcpus / 2 | round(0, "ceil") }}'
-nimbus_fluffy_build_log_level: 'TRACE'
-nimbus_fluffy_build_restarts_service: true
-nimbus_fluffy_build_nim_flags: ['-d:chronicles_colors=none']
+nimbus_portal_client_build_service_name: 'build-{{ nimbus_portal_client_service_name }}'
+nimbus_portal_client_build_restart_service: '{{ nimbus_portal_client_service_name }}.service'
+nimbus_portal_client_build_timer_enabled: true
+nimbus_portal_client_build_timer_timeout: 3600
+nimbus_portal_client_build_frequency: 'daily'
+nimbus_portal_client_build_days_kept: 3
+nimbus_portal_client_build_jobs: '{{ ansible_processor_vcpus / 2 | round(0, "ceil") }}'
+nimbus_portal_client_build_log_level: 'TRACE'
+nimbus_portal_client_build_restarts_service: true
+nimbus_portal_client_build_nim_flags: ['-d:chronicles_colors=none']
 
 # Repo
-nimbus_fluffy_repo_url: 'https://github.com/status-im/nimbus-eth1'
-nimbus_fluffy_repo_branch: 'master'
+nimbus_portal_client_repo_url: 'https://github.com/status-im/nimbus-eth1'
+nimbus_portal_client_repo_branch: 'master'
 
 # User
-nimbus_fluffy_user: 'nimbus'
-nimbus_fluffy_group: 'staff'
+nimbus_portal_client_user: 'nimbus'
+nimbus_portal_client_group: 'staff'
 
 # General
-nimbus_fluffy_network: 'mainnet' # or 'none'
-nimbus_fluffy_log_level: 'INFO' # TRACE DEBUG INFO NOTICE WARN ERROR FATAL NONE
-nimbus_fluffy_bootstrap_nodes: []
-#nimbus_fluffy_netkey: ~
-nimbus_fluffy_mainnet_beacon_api_endpoint: 'http://testing.mainnet.beacon-api.nimbus.team/eth/v1/beacon/headers/finalized'
-#nimbus_fluffy_trusted_block_root: ~
+nimbus_portal_client_network: 'mainnet' # or 'none'
+nimbus_portal_client_log_level: 'INFO' # TRACE DEBUG INFO NOTICE WARN ERROR FATAL NONE
+nimbus_portal_client_bootstrap_nodes: []
+#nimbus_portal_client_netkey: ~
+nimbus_portal_client_mainnet_beacon_api_endpoint: 'http://testing.mainnet.beacon-api.nimbus.team/eth/v1/beacon/headers/finalized'
+#nimbus_portal_client_trusted_block_root: ~
 
 # Connections
-nimbus_fluffy_public_address: '{{ ansible_host }}'
-nimbus_fluffy_max_peers: 160
-nimbus_fluffy_listening_addr: '0.0.0.0'
-nimbus_fluffy_listening_port: 9009
+nimbus_portal_client_public_address: '{{ ansible_host }}'
+nimbus_portal_client_max_peers: 160
+nimbus_portal_client_listening_addr: '0.0.0.0'
+nimbus_portal_client_listening_port: 9009
 
 # Limits
-nimbus_fluffy_radius: 'dynamic'
-nimbus_fluffy_storage_capacity: 35000 # in megabytes
+nimbus_portal_client_radius: 'dynamic'
+nimbus_portal_client_storage_capacity: 35000 # in megabytes
 
 # Metrics
-nimbus_fluffy_metrics_enabled: true
-nimbus_fluffy_metrics_address: '0.0.0.0'
-nimbus_fluffy_metrics_port: 9200
+nimbus_portal_client_metrics_enabled: true
+nimbus_portal_client_metrics_address: '0.0.0.0'
+nimbus_portal_client_metrics_port: 9200
 
 # JSON-RPC
-nimbus_fluffy_rpc_enabled: true
-nimbus_fluffy_rpc_address: '127.0.0.1'
-nimbus_fluffy_rpc_port: 9900
-nimbus_fluffy_rpc_api_options: 'eth,portal,discovery'
+nimbus_portal_client_rpc_enabled: true
+nimbus_portal_client_rpc_address: '127.0.0.1'
+nimbus_portal_client_rpc_port: 9900
+nimbus_portal_client_rpc_api_options: 'eth,portal,discovery'
 
 # Consul service definition settings
-nimbus_fluffy_consul_service_name: 'nimbus-fluffy'
-nimbus_fluffy_consul_service_file_name: '{{ nimbus_fluffy_service_name | replace("-", "_") }}'
-nimbus_fluffy_consul_metrics_service_name: '{{ nimbus_fluffy_consul_service_name }}-metrics'
-nimbus_fluffy_consul_url: 'http://localhost:8500/v1/catalog'
-nimbus_fluffy_consul_check_interval: '60s'
-nimbus_fluffy_consul_check_timeout: '5s'
-nimbus_fluffy_consul_check_disabled: false
-nimbus_fluffy_consul_success_before_passing: 0
-nimbus_fluffy_consul_failures_before_warning: 1
-nimbus_fluffy_consul_failures_before_critical: 2
+nimbus_portal_client_consul_service_name: 'nimbus-portal-client'
+nimbus_portal_client_consul_service_file_name: '{{ nimbus_portal_client_service_name | replace("-", "_") }}'
+nimbus_portal_client_consul_metrics_service_name: '{{ nimbus_portal_client_consul_service_name }}-metrics'
+nimbus_portal_client_consul_url: 'http://localhost:8500/v1/catalog'
+nimbus_portal_client_consul_check_interval: '60s'
+nimbus_portal_client_consul_check_timeout: '5s'
+nimbus_portal_client_consul_check_disabled: false
+nimbus_portal_client_consul_success_before_passing: 0
+nimbus_portal_client_consul_failures_before_warning: 1
+nimbus_portal_client_consul_failures_before_critical: 2

@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Jakub Sokołowski <jakub@status.im>
-  description: Build and run Nimbus Fluffy Eth1 node
+  description: Build and run Nimbus Portal Network client
   company: Status.im
   license: MIT
   min_ansible_version: 1.9

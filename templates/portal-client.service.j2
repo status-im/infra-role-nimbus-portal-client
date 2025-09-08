@@ -1,0 +1,38 @@
+[Unit]
+Description=Nimbus Eth1 Portal Network client ({{ nimbus_portal_client_repo_branch }})
+Documentation=https://github.com/status-im/nimbus-eth1
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User={{ nimbus_portal_client_user }}
+Group={{ nimbus_portal_client_group }}
+WorkingDirectory={{ nimbus_portal_client_service_path }}
+SyslogIdentifier={{ nimbus_portal_client_service_name }}
+SyslogFacility=local6
+SyslogLevel=debug
+Restart=on-failure
+ExecStart={{ nimbus_portal_client_binary_path }} \
+  --log-level={{ nimbus_portal_client_log_level }} \
+  --data-dir={{ nimbus_portal_client_data_path }} \
+  --network={{ nimbus_portal_client_network }} \
+  --netkey-file={{ nimbus_portal_client_netkey_path }} \
+{% if nimbus_portal_client_bootstrap_nodes|length > 0 %}
+  --bootstrap-file={{ nimbus_portal_client_bootstrap_path }} \
+{% endif %}
+  --udp-port={{ nimbus_portal_client_listening_port }} \
+  --listen-address={{ nimbus_portal_client_listening_addr }} \
+  --nat=extip:{{ nimbus_portal_client_public_address }} \
+  --metrics={{ nimbus_portal_client_metrics_enabled }} \
+  --metrics-port={{ nimbus_portal_client_metrics_port }} \
+  --metrics-address={{ nimbus_portal_client_metrics_address }} \
+  --rpc={{ nimbus_portal_client_rpc_enabled | to_json }} \
+  --rpc-port={{ nimbus_portal_client_rpc_port }} \
+  --rpc-address={{ nimbus_portal_client_rpc_address }} \
+  --rpc-api={{ nimbus_portal_client_rpc_api_options }} \
+  --radius={{ nimbus_portal_client_radius }} \
+  --storage-capacity={{ nimbus_portal_client_storage_capacity }} \
+  --trusted-block-root={{ nimbus_portal_client_trusted_block_root }}
+
+[Install]
+WantedBy=multi-user.target

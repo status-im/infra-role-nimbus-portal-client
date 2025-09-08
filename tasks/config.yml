@@ -1,50 +1,50 @@
 ---
 - name: Create service directory
   file:
-    path: '{{ nimbus_fluffy_service_path }}'
+    path: '{{ nimbus_portal_client_service_path }}'
     state: directory
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'
     mode: 0775
 
 - name: Create data directory
   file:
-    path: '{{ nimbus_fluffy_data_path }}'
+    path: '{{ nimbus_portal_client_data_path }}'
     state: directory
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'
     mode: 0770
 
 - name: Create netkey file (optional)
   copy:
-    dest: '{{ nimbus_fluffy_netkey_path }}'
-    content: '{{ nimbus_fluffy_netkey }}'
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    dest: '{{ nimbus_portal_client_netkey_path }}'
+    content: '{{ nimbus_portal_client_netkey }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'
     mode: 0600
-  when: nimbus_fluffy_netkey is defined
+  when: nimbus_portal_client_netkey is defined
 
 - name: Create bootstrap node file
   template:
     src: 'bootstrap.j2'
-    dest: '{{ nimbus_fluffy_bootstrap_path }}'
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    dest: '{{ nimbus_portal_client_bootstrap_path }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'
     mode: 0644
-  when: nimbus_fluffy_bootstrap_nodes|length > 0
+  when: nimbus_portal_client_bootstrap_nodes|length > 0
 
 - name: Create JSON RPC wrapper script
   template:
     src: 'rpc.sh.j2'
-    dest: '{{ nimbus_fluffy_rpc_script_path }}'
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    dest: '{{ nimbus_portal_client_rpc_script_path }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'
     mode: 0755
 
 - name: Create Ansible toggle script
   copy:
     src: 'ansible_toggle.sh'
-    dest: '{{ nimbus_fluffy_service_path }}/ansible_enabled.sh'
+    dest: '{{ nimbus_portal_client_service_path }}/ansible_enabled.sh'
     mode: 0750
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'

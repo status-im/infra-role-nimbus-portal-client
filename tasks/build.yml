@@ -1,45 +1,45 @@
 ---
 - name: Create folder
   file:
-    path: '{{ nimbus_fluffy_repo_path }}'
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    path: '{{ nimbus_portal_client_repo_path }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'
     state: 'directory'
 
 - name: Clone repo branch
   git:
-    repo: '{{ nimbus_fluffy_repo_url }}'
-    version: '{{ nimbus_fluffy_repo_branch }}'
-    dest: '{{ nimbus_fluffy_repo_path }}'
+    repo: '{{ nimbus_portal_client_repo_url }}'
+    version: '{{ nimbus_portal_client_repo_branch }}'
+    dest: '{{ nimbus_portal_client_repo_path }}'
     force: true
     update: true
-  become_user: '{{ nimbus_fluffy_user }}'
+  become_user: '{{ nimbus_portal_client_user }}'
 
 - name: Create build script
   template:
     src: 'build.sh.j2'
-    dest: '{{ nimbus_fluffy_build_script_path }}'
-    owner: '{{ nimbus_fluffy_user }}'
-    group: '{{ nimbus_fluffy_group }}'
+    dest: '{{ nimbus_portal_client_build_script_path }}'
+    owner: '{{ nimbus_portal_client_user }}'
+    group: '{{ nimbus_portal_client_group }}'
     mode: 0775
 
 - name: Check if node binary exists
   stat:
-    path: '{{ nimbus_fluffy_binary_path }}'
-  register: nimbus_fluffy_bin
+    path: '{{ nimbus_portal_client_binary_path }}'
+  register: nimbus_portal_client_bin
 
 - name: Create timer for build script
   include_role: name=infra-role-systemd-timer
   vars:
-    systemd_timer_name: '{{ nimbus_fluffy_build_service_name }}'
-    systemd_timer_user: '{{ nimbus_fluffy_user }}'
-    systemd_timer_group: '{{ nimbus_fluffy_group }}'
-    systemd_timer_description: 'Build {{ nimbus_fluffy_service_name }}'
-    systemd_timer_start_on_creation: '{{ not nimbus_fluffy_bin.stat.exists }}'
+    systemd_timer_name: '{{ nimbus_portal_client_build_service_name }}'
+    systemd_timer_user: '{{ nimbus_portal_client_user }}'
+    systemd_timer_group: '{{ nimbus_portal_client_group }}'
+    systemd_timer_description: 'Build {{ nimbus_portal_client_service_name }}'
+    systemd_timer_start_on_creation: '{{ not nimbus_portal_client_bin.stat.exists }}'
     systemd_timer_ionice_class: 'idle'
     systemd_timer_consul_warning: true
-    systemd_timer_enabled: '{{ nimbus_fluffy_build_timer_enabled }}'
-    systemd_timer_frequency: '{{ nimbus_fluffy_build_frequency }}'
-    systemd_timer_timeout_sec: '{{ nimbus_fluffy_build_timer_timeout }}'
-    systemd_timer_work_dir: '{{ nimbus_fluffy_repo_path }}'
-    systemd_timer_script_path: '{{ nimbus_fluffy_build_script_path }}'
+    systemd_timer_enabled: '{{ nimbus_portal_client_build_timer_enabled }}'
+    systemd_timer_frequency: '{{ nimbus_portal_client_build_frequency }}'
+    systemd_timer_timeout_sec: '{{ nimbus_portal_client_build_timer_timeout }}'
+    systemd_timer_work_dir: '{{ nimbus_portal_client_repo_path }}'
+    systemd_timer_script_path: '{{ nimbus_portal_client_build_script_path }}'

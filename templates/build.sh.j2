@@ -7,7 +7,7 @@ function headIsDetached() {
 }
 
 function binaryExists() {
-    ls build/fluffy_${COMMIT} 2>&1 1>/dev/null
+    ls build/nimbus_portal_client_${COMMIT} 2>&1 1>/dev/null
 }
 
 function fetchChanges() {
@@ -18,33 +18,33 @@ function fetchChanges() {
 
 function buildBinaries() {
     # Control number of jobs used to lower impact on running nodes
-    export MAKEFLAGS="-j{{ nimbus_fluffy_build_jobs | int }}"
+    export MAKEFLAGS="-j{{ nimbus_portal_client_build_jobs | int }}"
 
     make update OVERRIDE=1
-    make fluffy \
-        LOG_LEVEL="{{ nimbus_fluffy_build_log_level }}" \
-        NIMFLAGS="{{ nimbus_fluffy_build_nim_flags | join(' ') }}"
+    make nimbus_portal_client \
+        LOG_LEVEL="{{ nimbus_portal_client_build_log_level }}" \
+        NIMFLAGS="{{ nimbus_portal_client_build_nim_flags | join(' ') }}"
 
     # Rename binaries to match commit they were built from.
-    mv "build/fluffy" "build/fluffy_${COMMIT}"
+    mv "build/nimbus_portal_client" "build/nimbus_portal_client_${COMMIT}"
 
     # Create a symbolic link to the latest version
-    ln -frs build/fluffy_${COMMIT} build/fluffy
+    ln -frs build/nimbus_portal_client_${COMMIT} build/nimbus_portal_client
 
     # Delete copies that are older than N days
-    find build -mtime +{{ nimbus_fluffy_build_days_kept }} -exec rm '{}' \+
+    find build -mtime +{{ nimbus_portal_client_build_days_kept }} -exec rm '{}' \+
 }
 
 #-------------------------------------------------------------------------------
 
-BRANCH="{{ nimbus_fluffy_repo_branch }}"
-SERVICE="{{ nimbus_fluffy_build_restart_service }}"
+BRANCH="{{ nimbus_portal_client_repo_branch }}"
+SERVICE="{{ nimbus_portal_client_build_restart_service }}"
 
 echo " >>> Build Start: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
-if [[ "${USER}" != "{{ nimbus_fluffy_user }}" ]]; then
+if [[ "${USER}" != "{{ nimbus_portal_client_user }}" ]]; then
     echo "Incorrect user: ${USER}" >&2
-    echo "Expected: {{ nimbus_fluffy_user }}" >&2
+    echo "Expected: {{ nimbus_portal_client_user }}" >&2
     exit 1
 fi
 
@@ -66,7 +66,7 @@ else
     buildBinaries
 fi
 
-{% if nimbus_fluffy_build_restarts_service %}
+{% if nimbus_portal_client_build_restarts_service %}
 # Avoid faiure on first Ansible run due to missing service.
 if [[ $(systemctl is-active "${SERVICE}" || true) == "inactive" ]]; then
     echo " !!! No service to restart!"

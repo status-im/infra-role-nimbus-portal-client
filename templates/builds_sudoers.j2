@@ -1,16 +1,16 @@
 # Allow non-root users start Nimbus builds and manage service with sudo.
 
-# {{ nimbus_fluffy_service_name }}
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *status {{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *start {{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *stop {{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *restart {{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *disable {{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *mask {{ nimbus_fluffy_build_restart_service }}*
-# build-{{ nimbus_fluffy_service_name }}
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *status build-{{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *start build-{{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *stop build-{{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *restart build-{{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *disable build-{{ nimbus_fluffy_build_restart_service }}*
-%{{ nimbus_fluffy_group }} ALL= NOPASSWD: /usr/bin/systemctl *mask build-{{ nimbus_fluffy_build_restart_service }}*
+# {{ nimbus_portal_client_service_name }}
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *status {{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *start {{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *stop {{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *restart {{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *disable {{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *mask {{ nimbus_portal_client_build_restart_service }}*
+# build-{{ nimbus_portal_client_service_name }}
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *status build-{{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *start build-{{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *stop build-{{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *restart build-{{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *disable build-{{ nimbus_portal_client_build_restart_service }}*
+%{{ nimbus_portal_client_group }} ALL= NOPASSWD: /usr/bin/systemctl *mask build-{{ nimbus_portal_client_build_restart_service }}*

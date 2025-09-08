@@ -1,34 +1,34 @@
 ---
 - name: Symlink service logs folder
   file:
-    src: '/var/log/service/{{ nimbus_fluffy_service_name }}'
-    dest: '{{ nimbus_fluffy_logs_link }}'
+    src: '/var/log/service/{{ nimbus_portal_client_service_name }}'
+    dest: '{{ nimbus_portal_client_logs_link }}'
     state: 'link'
     force: true
 
 - name: Get finalized header data from Nimbus mainnet beacon API
   uri:
-    url: "{{ nimbus_fluffy_mainnet_beacon_api_endpoint }}"
+    url: "{{ nimbus_portal_client_mainnet_beacon_api_endpoint }}"
     method: GET
     return_content: yes
   register: response
 
 - name: Extract trusted block root and set as a variable
   set_fact:
-    nimbus_fluffy_trusted_block_root: "{{ response.json | json_query('data.root') }}"
+    nimbus_portal_client_trusted_block_root: "{{ response.json | json_query('data.root') }}"
 
 - name: Create systemd Unit file
   template:
-    src: 'fluffy.service.j2'
-    dest: '/etc/systemd/system/{{ nimbus_fluffy_service_name }}.service'
+    src: 'portal-client.service.j2'
+    dest: '/etc/systemd/system/{{ nimbus_portal_client_service_name }}.service'
     mode: 0644
-  register: nimbus_fluffy_service_definition
+  register: nimbus_portal_client_service_definition
 
 - name: Reload and restart the service
   systemd:
-    name: '{{ nimbus_fluffy_service_name }}.service'
+    name: '{{ nimbus_portal_client_service_name }}.service'
     enabled: true
     daemon_reload: true
     state: |-
-      {{ nimbus_fluffy_service_definition.changed
+      {{ nimbus_portal_client_service_definition.changed
        | ternary("restarted", "started") }}
