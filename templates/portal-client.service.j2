@@ -32,6 +32,9 @@ ExecStart={{ nimbus_portal_client_binary_path }} \
   --rpc-api={{ nimbus_portal_client_rpc_api_options }} \
   --radius={{ nimbus_portal_client_radius }} \
   --storage-capacity={{ nimbus_portal_client_storage_capacity }} \
+{% if nimbus_portal_client_web3_url is defined and nimbus_portal_client_web3_url %}
+  --web3-url={{ nimbus_portal_client_web3_url }} \
+{% endif %}
   --trusted-block-root={{ nimbus_portal_client_trusted_block_root }}
 
 [Install]

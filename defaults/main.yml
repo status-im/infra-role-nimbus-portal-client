@@ -46,7 +46,7 @@ nimbus_portal_client_listening_port: 9009
 
 # Limits
 nimbus_portal_client_radius: 'dynamic'
-nimbus_portal_client_storage_capacity: 35000 # in megabytes
+nimbus_portal_client_storage_capacity: 25000 # in megabytes
 
 # Metrics
 nimbus_portal_client_metrics_enabled: true
@@ -58,6 +58,7 @@ nimbus_portal_client_rpc_enabled: true
 nimbus_portal_client_rpc_address: '127.0.0.1'
 nimbus_portal_client_rpc_port: 9900
 nimbus_portal_client_rpc_api_options: 'portal,discovery'
+nimbus_portal_client_web3_url: []
 
 # Consul service definition settings
 nimbus_portal_client_consul_service_name: 'nimbus-portal-client'
